@@ -32,14 +32,16 @@ public class MainActivity extends AppCompatActivity {
         newTask = new user("What", "wowowow");
         adapter.add(newTask);
 
-        /*btnAdd.setOnClickListener(new View.OnClickListener() {
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //adapter.add(newTask);
+                //test
+                adapter.add(newTask);
+                adapter.notifyDataSetChanged();
 
             }
-        });*/
+        });
 
 
 
