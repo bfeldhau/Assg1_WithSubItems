@@ -28,4 +28,5 @@ public class userAdapter extends ArrayAdapter<user> {
 
         return convertView;
     }
+
 }
