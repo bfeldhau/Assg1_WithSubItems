@@ -1,5 +1,10 @@
 package com.example.assg1;
 
+import android.app.Activity;
+import android.app.SharedElementCallback;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +15,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,22 +36,26 @@ public class MainActivity extends AppCompatActivity {
     userAdapter adapter;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        loadData();
+
         btnAdd = (Button) findViewById(R.id.button);
         taskText = (EditText) findViewById(R.id.taskText);
         descriptionText = (EditText) findViewById(R.id.descriptionText);
 
-        arrayOfTask = new ArrayList<user>();
+
+        //arrayOfTask = new ArrayList<user>();
         adapter = new userAdapter(this, arrayOfTask);
 
         listView = (ListView) findViewById(R.id.results_listview);
         listView.setAdapter(adapter);
-        newTask = new user("What", "wowowow");
-        adapter.add(newTask);
+
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 //test
                 adapter.add(newTask);
                 adapter.notifyDataSetChanged();
+                saveData();
 
             }
         });
@@ -69,5 +83,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+/// end of on create
+        }
+
+        private void saveData(){
+            SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(arrayOfTask);
+            editor.putString("task list", json);
+            editor.apply();
+        }
+
+        private void loadData(){
+            SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = sharedPreferences.getString("task list", null);
+            Type type = new TypeToken<ArrayList<user>>() {}.getType();
+            arrayOfTask = gson.fromJson(json, type);
+
+        }
+
+
+        ///this is end of main activity
     }
-}
+
