@@ -45,12 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
         loadData();
 
+        if (arrayOfTask == null){
+            createlist();
+        }
+
         btnAdd = (Button) findViewById(R.id.button);
         taskText = (EditText) findViewById(R.id.taskText);
         descriptionText = (EditText) findViewById(R.id.descriptionText);
 
 
-        //arrayOfTask = new ArrayList<user>();
         adapter = new userAdapter(this, arrayOfTask);
 
         listView = (ListView) findViewById(R.id.results_listview);
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 arrayOfTask.remove(position);
                 adapter.notifyDataSetChanged();
+                saveData();
                 return true;
             }
         });
@@ -104,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
+        private void createlist(){
+            arrayOfTask = new ArrayList<user>();
+        }
         ///this is end of main activity
     }
 
