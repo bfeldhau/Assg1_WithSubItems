@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         loadData();
-
+    //test
         if (arrayOfTask == null){
             createlist();
         }
