@@ -97,6 +97,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkBox.isChecked()) {
+                    for (int i = 0; i < 5; i++) {
+                        arrayOfTask.remove(i);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        });
+
+
 /// end of on create
     }
 

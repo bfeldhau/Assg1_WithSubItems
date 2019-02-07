@@ -18,7 +18,7 @@ public class userAdapter extends ArrayAdapter<user> {
     public View getView(int position, View convertView, ViewGroup parent){
         final user User = getItem(position);
         ///this new
-        CheckBox checkbox;
+        final CheckBox checkbox;
 
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
