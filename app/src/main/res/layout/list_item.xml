@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    //test
     <TextView
         android:id="@+id/task"
         android:layout_width="match_parent"
@@ -19,5 +19,17 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:buttonTint="@color/colorPrimary"
+        android:clickable="true"
+        android:focusable="false"
+        android:text="check_to_delete"
+        android:textColor="@color/colorAccent"
+        />
 
 </LinearLayout>
